@@ -8,13 +8,18 @@ from API_Return import ServerAPI
 
 class HostServerStatus:
     def __init__(self):
-        self.Command = ""
+        self.api = ServerAPI  # .ExecuteCommand(CMDType=None, UsedType=None, CMDName=None)
+
+        self.CMDType = ["MemoryUsed", "StorageUsed", "network", "docker-inspect"]
+        self.UsedType = ["network-interface", "docker-container"]
+        self.CMDName = []
+        self.Command = self.api.ExecuteCommand(CMDType="MemoryUsed")
 
     def Memory_Used(self):
-        return os.system(self.JsonParser["MemoryUsed"])
+        pass
 
     def Storage_Used(self):
-        return os.system(self.JsonParser["StorageUsed"])
+        pass
 
 
 class DockerServerStatus:

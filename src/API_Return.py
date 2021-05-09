@@ -18,10 +18,9 @@ class ServerAPI:
 
     def MailReportCredential(self, send=None, receive=None):
         """
-
-        :param send: BOOL
-        :param receive: BOOL
-        :return: json(String)
+        :type send: bool
+        :type receive: bool
+        :return: json
         """
         if send is None or receive is None:
             return {"sender": None, "receive": None}
@@ -41,11 +40,10 @@ class ServerAPI:
 
     def ServerLogPath(self, ServerType=None, LogType=None, LogName=None):
         """
-
-        :param ServerType: String
-        :param LogType: String
-        :param LogName: String
-        :return: json(String)
+        :type ServerType: str
+        :type LogType: str
+        :type LogName: str
+        :return: json
         """
         if ServerType is None or LogType is None or LogName is None:
             return {
@@ -63,11 +61,10 @@ class ServerAPI:
 
     def ExecuteCommand(self, CMDType=None, UsedType=None, CMDName=None):
         """
-
-        :param CMDType: String
-        :param UsedType: String
-        :param CMDName: String
-        :return: json(String)
+        :type CMDType: str
+        :type UsedType: str
+        :type CMDName: str
+        :return: json
         """
         if CMDType is None or UsedType is None or CMDName is None:
             return None
@@ -82,7 +79,6 @@ class ServerAPI:
             }
         else:
             if UsedType is "network-interface" or \
-                    UsedType is "docker-network" or \
                     UsedType is "docker-container":
                 return {
                     "CMDType": CMDType,
