@@ -22,12 +22,6 @@
     "Database-Server": {
       "mysql.log": "/var/log/mysql/mysql.log",
       "error.log": "/var/log/mysql/error.log"
-    },
-
-    "CTF-Server": {
-      "CTF-D": {
-        "N/A": "N/A"
-      }
     }
   }
 }

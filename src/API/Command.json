@@ -1,6 +1,10 @@
 {
-  "MemoryUsed": "cat /proc/meminfo | grep Mem",
-  "StorageUsed": "df -h",
+  "memory": {
+    "usage": {
+      "MemoryUsed": "cat /proc/meminfo | grep Mem",
+      "StorageUsed": "df -h"
+    }
+  },
 
   "network": {
     "network-interface": {
@@ -13,7 +17,8 @@
 
   "docker-inspect": {
     "docker-container": {
-      "container-id": "docker ps -a | awk '{print $1}'"
+      "container-id": "docker ps -a | awk '{print $1}'",
+      "container-live": "docker ps -a | awk '{print $4}'"
     }
   }
 
