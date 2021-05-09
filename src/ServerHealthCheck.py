@@ -17,18 +17,5 @@
 from datetime import datetime
 import os
 
-from Server_Security import *
-from Server_Status import *
-from Report import *
 
-
-class hello:
-    def __init__(self, **kwargs):
-        self.hello = kwargs.items()
-
-    def returnHello(self):
-        print(self.hello)
-
-
-hello(x=10)
 
