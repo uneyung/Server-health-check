@@ -10,51 +10,40 @@ class ServerAPI:
         with open('API/ReportCredential.json', 'r') as JsonParsing:
             self.ReportCredential = json.load(JsonParsing)
 
-        with open('API/ServerLog-Information.json', 'r') as JsonParsing:
+        with open('API/ServerLog.json', 'r') as JsonParsing:
             self.ServerLog = json.load(JsonParsing)
 
         with open('API/Command.json', 'r') as JsonParsing:
             self.Command = json.load(JsonParsing)
 
-    def MailReportCredential(self, send=None, receive=None):
+    def MailReportCredential(self):
         """
-        :type send: bool
-        :type receive: bool
         :return: json
         """
-        if send is None or receive is None:
-            return {"sender": None, "receive": None}
+        return {
+            "sender": self.ReportCredential["send"]["E-mail-Address"],
+            "sender-password": self.ReportCredential["send"]["E-mail-Password"],
+            "receive": self.ReportCredential["receive"]
+        }
 
-        if send is True:
-            return {
-                "sender": self.ReportCredential["send"]["E-mail-Address"],
-                "sender-password": self.ReportCredential["send"]["E-mail-Password"]
-                    }
-        elif receive is True:
-            return {
-                "sender": None,
-                "receive": self.ReportCredential["receive"]
-            }
-        else:
-            return {"sender": None, "receive": None}
-
-    def ServerLogPath(self, ServerType=None, LogType=None, LogName=None):
+    def ServerLogPath(self, LogType=None, ServerType=None, LogName=None):
         """
-        :type ServerType: str
         :type LogType: str
+        :type ServerType: str
         :type LogName: str
         :return: json
         """
-        if ServerType is None or LogType is None or LogName is None:
+        if LogType is None or ServerType is None or LogName is None:
             return {
-                "LogServerType": None,
                 "LogType": None,
+                "ServerType": None,
                 "LogName": None,
                 "LogPath": None
-                }
+            }
+
         return {
-            "LogServerType": ServerType,
             "LogType": LogType,
+            "ServerType": ServerType,
             "LogName": LogName,
             "LogPath": self.ServerLog[ServerType][LogType][LogName]
         }
@@ -67,22 +56,18 @@ class ServerAPI:
         :return: json
         """
         if CMDType is None or UsedType is None or CMDName is None:
-            return None
-
-        if CMDType is "MemoryUsed" or CMDType is "StorageUsed":
-            CMDName = CMDType
             return {
-                "CMDType": CMDType,
-                "UsedType": None,
-                "CMDName": CMDName,
-                "Command": self.Command[CMDType]
+                    "CMDType": None,
+                    "UsedType": None,
+                    "CMDName": None,
+                    "Command": None
             }
-        else:
-            if UsedType is "network-interface" or \
-                    UsedType is "docker-container":
-                return {
-                    "CMDType": CMDType,
-                    "UsedType": UsedType,
-                    "CMDName": CMDName,
-                    "Command": self.Command[CMDType][UsedType][CMDName]
-                }
+
+        return {
+            "CMDType": CMDType,
+            "UsedType": UsedType,
+            "CMDName": CMDName,
+            "Command": self.Command[CMDType][UsedType][CMDName]
+        }
+
+
