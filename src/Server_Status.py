@@ -7,43 +7,36 @@ from API_Return import ServerAPI
 
 class HostServerStatus:
     def __init__(self):
-        self.api = ServerAPI  # .ExecuteCommand(CMDType=None, UsedType=None, CMDName=None)
-
-        self.CMDType = ["MemoryUsed", "StorageUsed", "network", "docker-inspect"]
-        self.UsedType = ["network-interface", "docker-container"]
-        self.CMDName = []
-        self.Command = self.api.ExecuteCommand(CMDType="MemoryUsed")
+        self.api = ServerAPI()
+        self.CMDType = ["memory"]
+        self.UsedType = ["usage"]
+        self.CMDName = ["MemoryUsed", "StorageUsed"]
 
     def Memory_Used(self):
-        pass
+        return self.api.ExecuteCommand(CMDType=self.CMDType[0], UsedType=self.UsedType[0], CMDName=self.CMDName[0])
 
     def Storage_Used(self):
-        pass
+        return self.api.ExecuteCommand(CMDType=self.CMDType[0], UsedType=self.UsedType[0], CMDName=self.CMDName[1])
 
 
 class DockerServerStatus:
     def __init__(self):
-        pass
+        self.api = ServerAPI()
+        self.CMDType = ["network", "docker-inspect"]
+        self.UsedType = ["network-interface", "docker-container"]
+        self.CMDName = ["enp6s0", "docker0", "br-08c15f3adc22", "container-id", "container-name", "container-live"]
 
-    def Container_IDorName(self):
-        pass
+    def Container_ID_Name(self):
+        return {
+            "Container-ID": self.api.ExecuteCommand(CMDType=self.CMDType[1], UsedType=self.UsedType[1],
+                                                    CMDName=self.CMDName[3]),
+            "Container-NAME": self.api.ExecuteCommand(CMDType=self.CMDType[1], UsedType=self.UsedType[1],
+                                                      CMDName=self.CMDName[4]),
+        }
 
     def WEBorWAS_Server_Alive(self):
-        pass
+
+        return self.api.ExecuteCommand(CMDType=self.CMDType[1], UsedType=self.UsedType[1], CMDName=self.CMDName[5])
 
     def Container_Network(self):
-        pass
-
-    def Memory_Used(self):
-        pass
-
-    def Storage_Used(self):
-        pass
-
-    def Process_List(self):
-        pass
-
-
-
-
-
+        return self.api.ExecuteCommand(CMDType=self.CMDType[0], UsedType=self.UsedType[0], CMDName=self.CMDName[0])
