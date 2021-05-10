@@ -14,13 +14,20 @@
         5.
 """
 
-from datetime import datetime
-import os
-
-
-def hello():
-    print("Not Null")
-
+import time
+from Report import SendServerStatusforDiscord
 
 if __name__ == '__main__':
-    hello()
+    DateTime = time.localtime()
+    DiscordReport = SendServerStatusforDiscord(
+        WebHook_URL="840869197374291968/avpWEpIJNXhYO9XfIHw0-KzD7DCD_bkV3ALW2AjW1DxxE7fO5p5jVnoFGc7Yib51Ad3q",
+        Response="",
+        Report_Title="",
+        Date=str(DateTime.tm_year) + "-" + str(DateTime.tm_mon) + "-" + str(DateTime.tm_mday) + " " + str(DateTime.tm_hour) + ":" + str(DateTime.tm_min) + ":" + str(DateTime.tm_sec),
+        Report_Message="server die",
+        ServerStatusCode="",
+        Error_Point="",
+        Error_Log=""
+    )
+
+    DiscordReport.SendDiscordMessage()

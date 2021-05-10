@@ -14,7 +14,7 @@ class SendServerStatusforDiscord:
         Report for Server Status
 
         Discord Bot Token: "N/A"
-        Web Hook URL: "https://discord.com/api/webhooks/840869197374291968/avpWEpIJNXhYO9XfIHw0-KzD7DCD_bkV3ALW2AjW1DxxE7fO5p5jVnoFGc7Yib51Ad3q"
+        Web Hook URL: "N/A"
     """
 
     def __init__(self, WebHook_URL, **kwargs):
@@ -39,9 +39,11 @@ class SendServerStatusforDiscord:
         self.ServerStatusCode = kwargs.get("ServerStatusCode")
         self.Error_Point = kwargs.get("Error_Point")
         self.Error_Log = kwargs.get("Error_Log")
+        print(self.webhook_url)
+        print(self.Report_Message)
         self.webhook = DiscordWebhook(
             url=self.webhook_url,
-            context=self.Report_Message
+            content=self.Report_Message
         )
 
     def SendDiscordMessage(self):
