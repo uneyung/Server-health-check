@@ -10,7 +10,6 @@ from discord_webhook import DiscordWebhook
 
 
 class SendServerStatusforDiscord:
-
     """
         Report for Server Status
 
@@ -69,21 +68,17 @@ class SendServerStatusforMail:
         self.sender = list()
         self.receive = None
 
-    def SendMailCredential(self):
-        self.sender = (ServerAPI.MailReportCredential(True, False))
+    def Sender_Receiver_MailCredential(self):
+        self.sender = ServerAPI().MailReportCredential()
         return self.sender
-
-    def ReceiveMailCredential(self):
-        self.receive = (ServerAPI.MailReportCredential(False, True))
-        return self.receive
 
     def SendMail(self):
         self.smtp.ehlo()  # say Hello
         self.smtp.starttls()  # TLS 사용시 필요
-        self.smtp.login(self.SendMailCredential()[0], self.SendMailCredential()[1])
+        self.smtp.login(self.Sender_Receiver_MailCredential()[0], self.Sender_Receiver_MailCredential()[1])
 
         self.msg['Subject'] = self.Title
-        self.msg['To'] = self.ReceiveMailCredential()
+        self.msg['To'] = self.Sender_Receiver_MailCredential()[2]
 
-        self.smtp.sendmail(self.SendMailCredential()[0], self.ReceiveMailCredential(), self.msg.as_string())
+        self.smtp.sendmail(self.Sender_Receiver_MailCredential()[0], self.Sender_Receiver_MailCredential()[2], self.msg.as_string())
         self.smtp.quit()

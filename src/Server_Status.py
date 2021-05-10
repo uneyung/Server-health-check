@@ -32,11 +32,16 @@ class DockerServerStatus:
                                                     CMDName=self.CMDName[3]),
             "Container-NAME": self.api.ExecuteCommand(CMDType=self.CMDType[1], UsedType=self.UsedType[1],
                                                       CMDName=self.CMDName[4]),
+            "live": self.api.ExecuteCommand(CMDType=self.CMDType[1], UsedType=self.UsedType[1],
+                                            CMDName=self.CMDName[5])
         }
 
-    def WEBorWAS_Server_Alive(self):
-
-        return self.api.ExecuteCommand(CMDType=self.CMDType[1], UsedType=self.UsedType[1], CMDName=self.CMDName[5])
-
     def Container_Network(self):
-        return self.api.ExecuteCommand(CMDType=self.CMDType[0], UsedType=self.UsedType[0], CMDName=self.CMDName[0])
+        return {
+            self.CMDName[0]: self.api.ExecuteCommand(CMDType=self.CMDType[0], UsedType=self.UsedType[0],
+                                                     CMDName=self.CMDName[0]),
+            self.CMDName[1]: self.api.ExecuteCommand(CMDType=self.CMDType[0], UsedType=self.UsedType[0],
+                                                     CMDName=self.CMDName[1]),
+            self.CMDName[2]: self.api.ExecuteCommand(CMDType=self.CMDType[0], UsedType=self.UsedType[0],
+                                                     CMDName=self.CMDName[2])
+        }

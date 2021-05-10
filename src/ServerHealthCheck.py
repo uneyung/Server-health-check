@@ -17,3 +17,10 @@
 from datetime import datetime
 import os
 
+
+def hello():
+    print("Not Null")
+
+
+if __name__ == '__main__':
+    hello()
