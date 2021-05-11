@@ -2,6 +2,7 @@
 .DS_Store
 /src/venv/
 /src/Non-Need/
+*.pyc
 
 
 
