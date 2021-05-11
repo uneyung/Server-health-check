@@ -36,12 +36,13 @@ def container():
 if __name__ == '__main__':
     """
     Web-hook URL 
+            841541581550387200/Cw4FYMUoYi5aAiswXsOucp8HNVldnfaGiCf3GGwQGHt5pEvP2UPjDCaKst3fnb_lXagM
         LSH : 838953823451480134/xPbLNRqT-Rg4k_H7a3kQJUQsRHx8X8yvh3Hl3-auxDIJLScML-GdKhI9ncsHiUxiNsvG 
         LOGOS : 840869197374291968/avpWEpIJNXhYO9XfIHw0-KzD7DCD_bkV3ALW2AjW1DxxE7fO5p5jVnoFGc7Yib51Ad3q 
     """
     DateTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     DiscordReport = SendServerStatusforDiscord(
-        WebHook_URL="838953823451480134/xPbLNRqT-Rg4k_H7a3kQJUQsRHx8X8yvh3Hl3-auxDIJLScML-GdKhI9ncsHiUxiNsvG",
+        WebHook_URL="841541581550387200/Cw4FYMUoYi5aAiswXsOucp8HNVldnfaGiCf3GGwQGHt5pEvP2UPjDCaKst3fnb_lXagM",
         Response="200",
         Report_Title="Server die",
         Date=DateTime,
