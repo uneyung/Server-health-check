@@ -9,6 +9,11 @@ from API_Return import *
 from discord_webhook import DiscordWebhook
 
 
+class XML_ReWrite:
+    def __init__(self):
+        pass
+
+
 class SendServerStatusforDiscord:
     """
         Report for Server Status
