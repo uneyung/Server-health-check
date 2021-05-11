@@ -34,13 +34,22 @@ class SendServerStatusforDiscord:
         self.webhook_url = "https://discord.com/api/webhooks/" + WebHook_URL
         self.Response = kwargs.get("Response")
         self.Report_Title = kwargs.get("Report_Title")
-        self.Date = kwargs.get("Date")
-        self.Report_Message = kwargs.get("Report_Message")
+        self.Report_Date = kwargs.get("Date")
+        self.Message = kwargs.get("Message")
         self.ServerStatusCode = kwargs.get("ServerStatusCode")
         self.Error_Point = kwargs.get("Error_Point")
         self.Error_Log = kwargs.get("Error_Log")
-        print(self.webhook_url)
-        print(self.Report_Message)
+
+        self.Report_Message = f"""\n
+            Response: {self.Response} 
+            Report Title:  {self.Report_Title} 
+            Report Date:  {self.Report_Date} 
+            Message:  {self.Message} 
+            Server status: {self.ServerStatusCode} 
+            Error point:  {self.Error_Point} 
+            Error Log:  {self.Error_Log}
+        """
+
         self.webhook = DiscordWebhook(
             url=self.webhook_url,
             content=self.Report_Message
@@ -82,5 +91,6 @@ class SendServerStatusforMail:
         self.msg['Subject'] = self.Title
         self.msg['To'] = self.Sender_Receiver_MailCredential()[2]
 
-        self.smtp.sendmail(self.Sender_Receiver_MailCredential()[0], self.Sender_Receiver_MailCredential()[2], self.msg.as_string())
+        self.smtp.sendmail(self.Sender_Receiver_MailCredential()[0], self.Sender_Receiver_MailCredential()[2],
+                           self.msg.as_string())
         self.smtp.quit()
